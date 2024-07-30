@@ -14,31 +14,31 @@ public class RHController {
 
     @GetMapping("/{id}")
     public RH getRHById(@PathVariable Long id) {
-        return RHService.getRHById(id);
+        return rhService.getRHById(id);
     }
 
     @PostMapping("/approveLeaveRequest/{requestId}")
     public void approveLeaveRequest(@PathVariable Long requestId) {
-        RHService.approveLeaveRequest(requestId);
+        rhService.approveLeaveRequest(requestId);
     }
 
     @PostMapping("/rejectLeaveRequest/{requestId}")
     public void rejectLeaveRequest(@PathVariable Long requestId) {
-        RHService.rejectLeaveRequest(requestId);
+        rhService.rejectLeaveRequest(requestId);
     }
 
     @PutMapping("/updateEmployee")
     public void updateEmployeeInfo(@RequestParam Long employeeId, @RequestParam String newAddress, @RequestParam String newPhone) {
-        RHService.updateEmployeeInfo(employeeId, newAddress, newPhone);
+        rhService.updateEmployeeInfo(employeeId, newAddress, newPhone);
     }
 
     @PostMapping("/assignSalary")
     public void assignSalary(@RequestParam Long employeeId, @RequestParam double newSalary) {
-        RHService.assignSalary(employeeId, newSalary);
+        rhService.assignSalary(employeeId, newSalary);
     }
 
     @PostMapping("/assignBonus")
     public void assignBonus(@RequestParam Long employeeId, @RequestParam double bonus) {
-        RHService.assignBonus(employeeId, bonus);
+        rhService.assignBonus(employeeId, bonus);
     }
 }
