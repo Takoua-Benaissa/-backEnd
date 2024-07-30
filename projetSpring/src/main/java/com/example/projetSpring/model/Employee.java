@@ -2,6 +2,7 @@ package com.example.projetSpring.model;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -24,7 +25,7 @@ public class Employee {
     private double salaire;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private String position;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -34,7 +35,29 @@ public class Employee {
     private String telephone;
 
     private int nombreDeJoursConge;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<LeaveRequest> leaveRequests;
 
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Prime> primes;
+
+    public Employee() {
+    }
+
+    public Employee(String cin, String nom, String prenom, Date dateDeNaissance, double salaire, String role, String email, String adresse, String telephone, int nombreDeJoursConge, List<LeaveRequest> leaveRequests) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateDeNaissance = dateDeNaissance;
+        this.salaire = salaire;
+        this.position = role;
+        this.email = email;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.nombreDeJoursConge = nombreDeJoursConge;
+        this.leaveRequests = leaveRequests;
+    }
     public Long getId() {
         return id;
     }
@@ -83,12 +106,12 @@ public class Employee {
         this.salaire = salaire;
     }
 
-    public Role getRole() {
-        return role;
+    public String  getPosition() {
+        return position;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public String getEmail() {
@@ -122,9 +145,12 @@ public class Employee {
     public void setNombreDeJoursConge(int nombreDeJoursConge) {
         this.nombreDeJoursConge = nombreDeJoursConge;
     }
+    public List<LeaveRequest> getLeaveRequests() {
+        return leaveRequests;
+    }
+
+    public void setLeaveRequests(List<LeaveRequest> leaveRequests) {
+        this.leaveRequests = leaveRequests;
+    }
     
-}
-enum Role {
-    ADMIN,
-    EMPLOYEE
 }

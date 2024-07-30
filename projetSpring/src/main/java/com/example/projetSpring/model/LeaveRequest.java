@@ -18,7 +18,25 @@ public class LeaveRequest {
     private LocalDate startDate;
     private LocalDate endDate;
     private String reason;
-    private String status; // "PENDING", "APPROVED", "REJECTED"
+    private boolean isApproved; // "PENDING", "APPROVED", "REJECTED"
+
+    public LeaveRequest() {
+    }
+
+    // Constructeur avec tous les arguments
+    public LeaveRequest(LocalDate startDate, LocalDate endDate, String reason, boolean isApproved, Employee employee) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.reason = reason;
+        this.isApproved = isApproved;
+        this.employee = employee;
+    }
+    public LeaveRequest(LocalDate startDate, LocalDate endDate, boolean isApproved, Employee employee) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.isApproved = isApproved;
+        this.employee = employee;
+    }
 
     // Getters and Setters
     public Long getId() {
@@ -32,11 +50,6 @@ public class LeaveRequest {
     public Employee getEmployee() {
         return employee;
     }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -61,11 +74,12 @@ public class LeaveRequest {
         this.reason = reason;
     }
 
-    public String getStatus() {
-        return status;
+    public boolean isApproved() {
+        return isApproved;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setApproved(boolean isApproved) {
+        this.isApproved = isApproved;
     }
+
 }

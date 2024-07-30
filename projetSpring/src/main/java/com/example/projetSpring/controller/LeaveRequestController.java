@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.projetSpring.model.LeaveRequest;
 import com.example.projetSpring.service.LeaveRequestService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -16,8 +17,8 @@ public class LeaveRequestController {
     private LeaveRequestService leaveRequestService;
 
     @PostMapping("/add")
-    public LeaveRequest addLeaveRequest(@RequestBody LeaveRequest leaveRequest) {
-        return leaveRequestService.addLeaveRequest(leaveRequest);
+    public LeaveRequest createLeaveRequest(@RequestParam LocalDate startDate, @RequestParam LocalDate endDate, @RequestParam String reason, @RequestParam Long employeeId) {
+        return leaveRequestService.createLeaveRequest(startDate, endDate, reason, employeeId);
     }
 
     @GetMapping
