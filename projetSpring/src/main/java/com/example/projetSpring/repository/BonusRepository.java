@@ -1,9 +1,9 @@
 package com.example.projetSpring.repository;
 
-import com.example.projetSpring.model.Prime;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import com.example.projetSpring.model.Bonus;
 
 @Repository
-public interface PrimeRepository extends JpaRepository<Prime, Long> {
+public interface BonusRepository extends JpaRepository<Bonus, Long> {
 }

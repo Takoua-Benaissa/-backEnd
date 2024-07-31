@@ -8,55 +8,61 @@ import java.util.List;
 public class Employee {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @Column(nullable = false, unique = true)
-    private String cin;
+    protected String cin;
 
     @Column(nullable = false)
-    private String nom;
+    protected String nom;
 
     @Column(nullable = false)
-    private String prenom;
+    protected String prenom;
 
     @Temporal(TemporalType.DATE)
-    private Date dateDeNaissance;
+    protected Date dateDeNaissance;
 
-    private double salaire;
+    protected double salairebrut;
 
     @Enumerated(EnumType.STRING)
-    private String position;
+    protected String position;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    protected String email;
 
-    private String adresse;
+    protected String adresse;
 
-    private String telephone;
+    protected String telephone;
 
-    private int nombreDeJoursConge;
+    protected int nombreDeJoursConge;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<LeaveRequest> leaveRequests;
-
+    protected List<LeaveRequest> leaveRequests;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<Prime> primes;
+    protected List<Bonus> bonuses;
+    
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    protected List<Salary> salaries;
+
+
 
     public Employee() {
     }
 
-    public Employee(String cin, String nom, String prenom, Date dateDeNaissance, double salaire, String role, String email, String adresse, String telephone, int nombreDeJoursConge, List<LeaveRequest> leaveRequests) {
+    public Employee(String cin, String nom, String prenom, Date dateDeNaissance, double salaire, String role, String email, String adresse, String telephone, int nombreDeJoursConge, List<LeaveRequest> leaveRequests, List<Bonus> bonuses, List<Salary> salaries) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
         this.dateDeNaissance = dateDeNaissance;
-        this.salaire = salaire;
         this.position = role;
+        this.salairebrut=salaire;
         this.email = email;
         this.adresse = adresse;
         this.telephone = telephone;
         this.nombreDeJoursConge = nombreDeJoursConge;
         this.leaveRequests = leaveRequests;
+        this.bonuses = bonuses;
+        this.salaries = salaries;
     }
     public Long getId() {
         return id;
@@ -97,13 +103,13 @@ public class Employee {
     public void setDateDeNaissance(Date dateDeNaissance) {
         this.dateDeNaissance = dateDeNaissance;
     }
-
-    public double getSalaire() {
-        return salaire;
+    
+    public double getSalairebrut() {
+        return salairebrut;
     }
 
-    public void setSalaire(double salaire) {
-        this.salaire = salaire;
+    public void setSalairebrut(double salairebrut) {
+        this.salairebrut = salairebrut;
     }
 
     public String  getPosition() {
@@ -151,6 +157,21 @@ public class Employee {
 
     public void setLeaveRequests(List<LeaveRequest> leaveRequests) {
         this.leaveRequests = leaveRequests;
+    }
+    public List<Bonus> getBonuses() {
+        return bonuses;
+    }
+    
+    public void setBonuses(List<Bonus> bonuses) {
+        this.bonuses = bonuses;
+    }
+    
+    public List<Salary> getSalaries() {
+        return salaries;
+    }
+    
+    public void setSalaries(List<Salary> salaries) {
+        this.salaries = salaries;
     }
     
 }

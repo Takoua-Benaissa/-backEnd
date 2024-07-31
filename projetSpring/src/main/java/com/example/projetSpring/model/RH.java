@@ -14,7 +14,7 @@ public class RH extends Employee {
         super();
     }
    
-    public RH(String cin, String nom, String prenom, Date dateDeNaissance, double salaire, String role, String email, String adresse, String telephone, int nombreDeJoursConge, List<LeaveRequest> leaveRequests) {
-        super(cin, nom, prenom, dateDeNaissance, salaire, role, email, adresse, telephone, nombreDeJoursConge, leaveRequests);
+    public RH(String cin, String nom, String prenom, Date dateDeNaissance, double salaire, String role, String email, String adresse, String telephone, int nombreDeJoursConge, List<LeaveRequest> leaveRequestsList,List<Bonus> bonuses, List<Salary> salaries) {
+        super(cin, nom, prenom, dateDeNaissance, salaire, role, email, adresse, telephone, nombreDeJoursConge,leaveRequestsList ,bonuses,salaries);
     }
 }
